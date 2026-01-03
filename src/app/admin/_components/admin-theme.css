@@ -1,0 +1,1424 @@
+/* Light mode overrides for the admin area (hanya konten utama, sidebar tetap gelap) */
+
+[data-admin-theme='light'] {
+  color-scheme: light;
+}
+
+/* Background adjustments hanya untuk area main */
+[data-admin-theme='light'] .admin-main .bg-slate-950,
+[data-admin-theme='light'] .admin-main .bg-slate-950\/70,
+[data-admin-theme='light'] .admin-main .bg-slate-950\/60,
+[data-admin-theme='light'] .admin-main .bg-slate-950\/80,
+[data-admin-theme='light'] .admin-main .bg-slate-950\/50 {
+  background-color: #f8fafc !important; /* slate-50 */
+}
+
+[data-admin-theme='light'] .admin-main .bg-slate-900,
+[data-admin-theme='light'] .admin-main .bg-slate-900\/80,
+[data-admin-theme='light'] .admin-main .bg-slate-900\/70,
+[data-admin-theme='light'] .admin-main .bg-slate-900\/60,
+[data-admin-theme='light'] .admin-main .bg-slate-900\/50 {
+  background-color: #ffffff !important;
+}
+
+[data-admin-theme='light'] .admin-main .bg-slate-800,
+[data-admin-theme='light'] .admin-main .bg-slate-800\/70,
+[data-admin-theme='light'] .admin-main .bg-slate-800\/80 {
+  background-color: #f1f5f9 !important; /* slate-100 */
+}
+
+[data-admin-theme='light'] .admin-main .bg-slate-700 {
+  background-color: #cbd5e1 !important; /* slate-300 */
+}
+
+/* Border adjustments untuk kartu di konten */
+[data-admin-theme='light'] .admin-main .border-slate-900,
+[data-admin-theme='light'] .admin-main .border-slate-900\/80,
+[data-admin-theme='light'] .admin-main .border-slate-800,
+[data-admin-theme='light'] .admin-main .border-slate-800\/80,
+[data-admin-theme='light'] .admin-main .border-slate-700 {
+  border-color: #cbd5e1 !important; /* slate-300 for better visibility */
+}
+
+/* Text adjustments di konten - ensure all text is readable */
+[data-admin-theme='light'] .admin-main .text-white,
+[data-admin-theme='light'] .admin-main .text-slate-100,
+[data-admin-theme='light'] .admin-main .text-slate-200,
+[data-admin-theme='light'] .admin-main .text-slate-300 {
+  color: #0f172a !important; /* slate-900 for high contrast */
+}
+
+[data-admin-theme='light'] .admin-main .text-slate-400 {
+  color: #475569 !important; /* slate-600 for better readability */
+}
+
+[data-admin-theme='light'] .admin-main .text-slate-500 {
+  color: #64748b !important; /* slate-500 */
+}
+
+[data-admin-theme='light'] .admin-main .text-slate-600 {
+  color: #475569 !important; /* slate-600 */
+}
+
+/* Input fields and form elements */
+[data-admin-theme='light'] .admin-main input,
+[data-admin-theme='light'] .admin-main textarea,
+[data-admin-theme='light'] .admin-main select {
+  background-color: #ffffff !important;
+  border-color: #cbd5e1 !important;
+  color: #0f172a !important;
+}
+
+[data-admin-theme='light'] .admin-main input::placeholder,
+[data-admin-theme='light'] .admin-main textarea::placeholder {
+  color: #94a3b8 !important; /* slate-400 */
+}
+
+/* Panels / cards drop shadow softening */
+[data-admin-theme='light'] .admin-main .shadow-indigo-500\/10,
+[data-admin-theme='light'] .admin-main .shadow-indigo-500\/5 {
+  box-shadow: 0 18px 45px rgba(15, 23, 42, 0.08) !important;
+}
+
+/* Pills and badges */
+[data-admin-theme='light'] .admin-main .bg-indigo-500\/10 {
+  background-color: #eef2ff !important;
+}
+
+[data-admin-theme='light'] .admin-main .bg-indigo-500\/20 {
+  background-color: #e0e7ff !important;
+}
+
+[data-admin-theme='light'] .admin-main .text-indigo-100 {
+  color: #312e81 !important; /* indigo-800 */
+}
+
+[data-admin-theme='light'] .admin-main .text-indigo-200 {
+  color: #3730a3 !important; /* indigo-700 */
+}
+
+[data-admin-theme='light'] .admin-main .text-indigo-300 {
+  color: #4338ca !important; /* indigo-600 */
+}
+
+[data-admin-theme='light'] .admin-main .text-indigo-400 {
+  color: #6366f1 !important; /* indigo-500 */
+}
+
+/* Color-specific text overrides for better contrast */
+[data-admin-theme='light'] .admin-main .text-blue-300,
+[data-admin-theme='light'] .admin-main .text-blue-400 {
+  color: #2563eb !important; /* blue-600 */
+}
+
+[data-admin-theme='light'] .admin-main .text-emerald-300,
+[data-admin-theme='light'] .admin-main .text-emerald-400 {
+  color: #059669 !important; /* emerald-600 */
+}
+
+[data-admin-theme='light'] .admin-main .text-amber-300,
+[data-admin-theme='light'] .admin-main .text-amber-400 {
+  color: #d97706 !important; /* amber-600 */
+}
+
+[data-admin-theme='light'] .admin-main .text-red-100,
+[data-admin-theme='light'] .admin-main .text-red-200 {
+  color: #dc2626 !important; /* red-600 */
+}
+
+[data-admin-theme='light'] .admin-main .text-green-400 {
+  color: #16a34a !important; /* green-600 */
+}
+
+/* Icons in light mode - ensure all icons are visible */
+[data-admin-theme='light'] .admin-main svg,
+[data-admin-theme='light'] .admin-main .lucide,
+[data-admin-theme='light'] .admin-main [class*="icon"] {
+  color: #0f172a !important; /* slate-900 */
+  stroke: #0f172a !important;
+}
+
+[data-admin-theme='light'] .admin-main .text-indigo-300,
+[data-admin-theme='light'] .admin-main .text-indigo-400 {
+  color: #6366f1 !important; /* indigo-500 */
+  stroke: #6366f1 !important;
+}
+
+[data-admin-theme='light'] .admin-main .text-emerald-300,
+[data-admin-theme='light'] .admin-main .text-emerald-400 {
+  color: #059669 !important; /* emerald-600 */
+  stroke: #059669 !important;
+}
+
+[data-admin-theme='light'] .admin-main .text-amber-300,
+[data-admin-theme='light'] .admin-main .text-amber-400 {
+  color: #d97706 !important; /* amber-600 */
+  stroke: #d97706 !important;
+}
+
+[data-admin-theme='light'] .admin-main .text-blue-300,
+[data-admin-theme='light'] .admin-main .text-blue-400 {
+  color: #2563eb !important; /* blue-600 */
+  stroke: #2563eb !important;
+}
+
+/* Badge and pill colors in light mode */
+[data-admin-theme='light'] .admin-main .bg-indigo-500\/20 {
+  background-color: #eef2ff !important; /* indigo-50 */
+  border-color: #c7d2fe !important; /* indigo-200 */
+}
+
+[data-admin-theme='light'] .admin-main .bg-emerald-500\/10 {
+  background-color: #d1fae5 !important; /* emerald-100 */
+}
+
+[data-admin-theme='light'] .admin-main .bg-amber-500\/10 {
+  background-color: #fef3c7 !important; /* amber-100 */
+}
+
+[data-admin-theme='light'] .admin-main .bg-blue-500\/10 {
+  background-color: #dbeafe !important; /* blue-100 */
+}
+
+[data-admin-theme='light'] .admin-main .bg-red-500\/10 {
+  background-color: #fee2e2 !important; /* red-100 */
+}
+
+/* Chart colors in light mode */
+[data-admin-theme='light'] .admin-main .bg-indigo-500 {
+  background-color: #6366f1 !important;
+}
+
+[data-admin-theme='light'] .admin-main .bg-emerald-500 {
+  background-color: #10b981 !important;
+}
+
+[data-admin-theme='light'] .admin-main .bg-amber-500 {
+  background-color: #f59e0b !important;
+}
+
+[data-admin-theme='light'] .admin-main .bg-blue-500 {
+  background-color: #3b82f6 !important;
+}
+
+[data-admin-theme='light'] .admin-main .bg-slate-500 {
+  background-color: #64748b !important;
+}
+
+/* Additional icon fixes for light mode */
+[data-admin-theme='light'] .admin-main path,
+[data-admin-theme='light'] .admin-main circle,
+[data-admin-theme='light'] .admin-main line,
+[data-admin-theme='light'] .admin-main polyline,
+[data-admin-theme='light'] .admin-main polygon {
+  stroke: #0f172a !important; /* slate-900 */
+}
+
+[data-admin-theme='light'] .admin-main svg[class*="indigo"] path,
+[data-admin-theme='light'] .admin-main svg[class*="indigo"] circle {
+  stroke: #6366f1 !important; /* indigo-500 */
+}
+
+[data-admin-theme='light'] .admin-main svg[class*="emerald"] path,
+[data-admin-theme='light'] .admin-main svg[class*="emerald"] circle {
+  stroke: #10b981 !important; /* emerald-500 */
+}
+
+[data-admin-theme='light'] .admin-main svg[class*="amber"] path,
+[data-admin-theme='light'] .admin-main svg[class*="amber"] circle {
+  stroke: #f59e0b !important; /* amber-500 */
+}
+
+[data-admin-theme='light'] .admin-main svg[class*="blue"] path,
+[data-admin-theme='light'] .admin-main svg[class*="blue"] circle {
+  stroke: #3b82f6 !important; /* blue-500 */
+}
+
+/* Ensure all text in cards is readable */
+[data-admin-theme='light'] .admin-main .text-slate-300 {
+  color: #0f172a !important; /* slate-900 */
+}
+
+/* Button states in light mode */
+[data-admin-theme='light'] .admin-main button:not(:disabled) {
+  color: #0f172a !important;
+}
+
+[data-admin-theme='light'] .admin-main button.bg-indigo-500\/20 {
+  background-color: #eef2ff !important;
+  color: #4338ca !important; /* indigo-700 */
+}
+
+[data-admin-theme='light'] .admin-main button.bg-slate-800\/70 {
+  background-color: #e2e8f0 !important;
+  color: #0f172a !important;
+}
+
+/* Table and list items */
+[data-admin-theme='light'] .admin-main tr,
+[data-admin-theme='light'] .admin-main td,
+[data-admin-theme='light'] .admin-main th {
+  color: #0f172a !important;
+  border-color: #cbd5e1 !important;
+}
+
+/* Dropdown and select */
+[data-admin-theme='light'] .admin-main select {
+  background-color: #ffffff !important;
+  color: #0f172a !important;
+  border-color: #cbd5e1 !important;
+}
+
+/* Code and pre blocks */
+[data-admin-theme='light'] .admin-main code,
+[data-admin-theme='light'] .admin-main pre {
+  background-color: #f1f5f9 !important;
+  color: #0f172a !important;
+}
+
+/* Button text in light mode */
+[data-admin-theme='light'] .admin-main button.text-slate-200,
+[data-admin-theme='light'] .admin-main button.text-slate-300 {
+  color: #0f172a !important;
+}
+
+/* Links */
+[data-admin-theme='light'] .admin-main a {
+  color: #2563eb !important; /* blue-600 */
+}
+
+/* Headings - ensure they're always dark */
+[data-admin-theme='light'] .admin-main h1,
+[data-admin-theme='light'] .admin-main h2,
+[data-admin-theme='light'] .admin-main h3,
+[data-admin-theme='light'] .admin-main h4,
+[data-admin-theme='light'] .admin-main h5,
+[data-admin-theme='light'] .admin-main h6 {
+  color: #0f172a !important; /* slate-900 */
+}
+
+/* Topbar light mode adjustments */
+[data-admin-theme='light'] header.border-slate-900\/70 {
+  border-color: #cbd5e1 !important; /* slate-300 */
+  background-color: #ffffff !important;
+}
+
+[data-admin-theme='light'] header .bg-slate-900\/80,
+[data-admin-theme='light'] header .bg-slate-900\/70 {
+  background-color: #f8fafc !important; /* slate-50 */
+}
+
+[data-admin-theme='light'] header .border-slate-800 {
+  border-color: #cbd5e1 !important; /* slate-300 */
+}
+
+[data-admin-theme='light'] header .text-slate-200,
+[data-admin-theme='light'] header .text-slate-300 {
+  color: #0f172a !important; /* slate-900 */
+}
+
+[data-admin-theme='light'] header .text-slate-400 {
+  color: #475569 !important; /* slate-600 */
+}
+
+[data-admin-theme='light'] header .text-slate-500 {
+  color: #64748b !important; /* slate-500 */
+}
+
+[data-admin-theme='light'] header .text-white {
+  color: #0f172a !important; /* slate-900 */
+}
+
+[data-admin-theme='light'] header input {
+  background-color: #ffffff !important;
+  border-color: #cbd5e1 !important;
+  color: #0f172a !important;
+}
+
+[data-admin-theme='light'] header input::placeholder {
+  color: #94a3b8 !important; /* slate-400 */
+}
+
+[data-admin-theme='light'] header .hover\:bg-slate-800\/70:hover {
+  background-color: #e2e8f0 !important; /* slate-200 */
+}
+
+[data-admin-theme='light'] header .bg-slate-950\/95 {
+  background-color: #ffffff !important;
+  border-color: #cbd5e1 !important;
+}
+
+[data-admin-theme='light'] header .text-slate-200 {
+  color: #0f172a !important;
+}
+
+[data-admin-theme='light'] header .text-red-200 {
+  color: #dc2626 !important; /* red-600 */
+}
+
+/* Sidebar light mode - make sidebar white with clear text and icons */
+[data-admin-theme='light'] aside.bg-slate-950\/95 {
+  background-color: #ffffff !important;
+  border-color: #e2e8f0 !important; /* slate-200 */
+}
+
+[data-admin-theme='light'] aside .bg-slate-950\/95 {
+  background-color: #ffffff !important;
+}
+
+[data-admin-theme='light'] aside .bg-slate-900\/70,
+[data-admin-theme='light'] aside .bg-slate-900\/80 {
+  background-color: #f8fafc !important; /* slate-50 */
+}
+
+[data-admin-theme='light'] aside .bg-slate-800\/70,
+[data-admin-theme='light'] aside .bg-slate-800\/80 {
+  background-color: #e2e8f0 !important; /* slate-200 */
+}
+
+[data-admin-theme='light'] aside .border-slate-900\/80,
+[data-admin-theme='light'] aside .border-slate-800,
+[data-admin-theme='light'] aside .border-slate-700 {
+  border-color: #cbd5e1 !important; /* slate-300 */
+}
+
+/* Sidebar text in light mode */
+[data-admin-theme='light'] aside .text-white {
+  color: #0f172a !important; /* slate-900 */
+}
+
+[data-admin-theme='light'] aside .text-slate-200,
+[data-admin-theme='light'] aside .text-slate-300 {
+  color: #0f172a !important; /* slate-900 */
+}
+
+[data-admin-theme='light'] aside .text-slate-400 {
+  color: #475569 !important; /* slate-600 */
+}
+
+[data-admin-theme='light'] aside .text-slate-500 {
+  color: #64748b !important; /* slate-500 */
+}
+
+/* Sidebar icons in light mode */
+[data-admin-theme='light'] aside svg,
+[data-admin-theme='light'] aside .lucide {
+  color: #0f172a !important; /* slate-900 */
+  stroke: #0f172a !important;
+}
+
+[data-admin-theme='light'] aside .text-indigo-300,
+[data-admin-theme='light'] aside .text-indigo-400 {
+  color: #6366f1 !important; /* indigo-500 */
+  stroke: #6366f1 !important;
+}
+
+[data-admin-theme='light'] aside .text-indigo-200 {
+  color: #818cf8 !important; /* indigo-400 */
+  stroke: #818cf8 !important;
+}
+
+/* Sidebar active states in light mode */
+[data-admin-theme='light'] aside .bg-slate-800\/80 {
+  background-color: #e2e8f0 !important; /* slate-200 */
+}
+
+[data-admin-theme='light'] aside .bg-indigo-500\/10 {
+  background-color: #eef2ff !important; /* indigo-50 */
+}
+
+[data-admin-theme='light'] aside .bg-indigo-500\/15 {
+  background-color: #e0e7ff !important; /* indigo-100 */
+}
+
+[data-admin-theme='light'] aside .bg-indigo-500\/20 {
+  background-color: #ddd6fe !important; /* indigo-200 */
+}
+
+[data-admin-theme='light'] aside .border-indigo-500\/40 {
+  border-color: #818cf8 !important; /* indigo-400 */
+}
+
+[data-admin-theme='light'] aside .hover\:bg-slate-800\/70:hover {
+  background-color: #e2e8f0 !important; /* slate-200 */
+}
+
+[data-admin-theme='light'] aside .hover\:bg-slate-800\/80:hover {
+  background-color: #e2e8f0 !important; /* slate-200 */
+}
+
+/* Sidebar scrollbars */
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: #1f2937 transparent;
+}
+
+[data-admin-theme='light'] .custom-scrollbar {
+  scrollbar-color: #cbd5e1 transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #1f2937;
+  border-radius: 9999px;
+}
+
+[data-admin-theme='light'] .custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #cbd5e1;
+}
+
+/* Additional fixes for light mode - ensure all dark backgrounds are light */
+[data-admin-theme='light'] .admin-main .bg-slate-950\/60,
+[data-admin-theme='light'] .admin-main .bg-slate-950\/70 {
+  background-color: #f8fafc !important; /* slate-50 */
+}
+
+[data-admin-theme='light'] .admin-main .bg-gradient-to-r.from-slate-950,
+[data-admin-theme='light'] .admin-main .bg-gradient-to-r.via-slate-900,
+[data-admin-theme='light'] .admin-main .bg-gradient-to-r.to-slate-950 {
+  background: linear-gradient(to right, #f8fafc, #ffffff, #f8fafc) !important;
+}
+
+/* Modal backgrounds in light mode */
+[data-admin-theme='light'] .admin-main .bg-black\/60,
+[data-admin-theme='light'] .admin-main .bg-black\/70 {
+  background-color: rgba(0, 0, 0, 0.5) !important; /* Keep backdrop dark for contrast */
+}
+
+[data-admin-theme='light'] .admin-main .bg-slate-950 {
+  background-color: #ffffff !important;
+}
+
+/* Ensure all icons in cards are visible */
+[data-admin-theme='light'] .admin-main article svg,
+[data-admin-theme='light'] .admin-main article .lucide {
+  color: #0f172a !important;
+  stroke: #0f172a !important;
+}
+
+[data-admin-theme='light'] .admin-main article .text-indigo-200,
+[data-admin-theme='light'] .admin-main article .text-indigo-300 {
+  color: #6366f1 !important;
+  stroke: #6366f1 !important;
+}
+
+[data-admin-theme='light'] .admin-main article .text-emerald-100 {
+  color: #059669 !important;
+}
+
+[data-admin-theme='light'] .admin-main article .text-amber-100 {
+  color: #d97706 !important;
+}
+
+/* Card backgrounds in light mode */
+[data-admin-theme='light'] .admin-main article.bg-slate-900\/70 {
+  background-color: #ffffff !important;
+  border-color: #cbd5e1 !important;
+}
+
+/* Ensure all text in articles is readable */
+[data-admin-theme='light'] .admin-main article .text-white {
+  color: #0f172a !important;
+}
+
+[data-admin-theme='light'] .admin-main article .text-slate-300 {
+  color: #475569 !important;
+}
+
+[data-admin-theme='light'] .admin-main article .text-slate-400 {
+  color: #64748b !important;
+}
+
+[data-admin-theme='light'] .admin-main article .text-slate-500 {
+  color: #94a3b8 !important;
+}
+
+/* Badge colors in light mode */
+[data-admin-theme='light'] .admin-main article .border-amber-500\/40 {
+  border-color: #f59e0b !important;
+}
+
+[data-admin-theme='light'] .admin-main article .bg-amber-500\/15 {
+  background-color: #fef3c7 !important;
+}
+
+[data-admin-theme='light'] .admin-main article .border-emerald-500\/40 {
+  border-color: #10b981 !important;
+}
+
+[data-admin-theme='light'] .admin-main article .bg-emerald-500\/15 {
+  background-color: #d1fae5 !important;
+}
+
+/* Button hover states in light mode */
+[data-admin-theme='light'] .admin-main article button.hover\:bg-indigo-500\/20:hover {
+  background-color: #eef2ff !important;
+}
+
+[data-admin-theme='light'] .admin-main article button.hover\:border-indigo-500\/40:hover {
+  border-color: #818cf8 !important;
+}
+
+[data-admin-theme='light'] .admin-main article button.hover\:text-white:hover {
+  color: #0f172a !important;
+}
+
+/* Chart tooltip in light mode */
+[data-admin-theme='light'] .admin-main .bg-slate-900.border-slate-700 {
+  background-color: #ffffff !important;
+  border-color: #cbd5e1 !important;
+}
+
+[data-admin-theme='light'] .admin-main .bg-slate-900.border-slate-700 .text-white {
+  color: #0f172a !important;
+}
+
+[data-admin-theme='light'] .admin-main .bg-slate-900.border-slate-700 .text-slate-300 {
+  color: #475569 !important;
+}
+
+[data-admin-theme='light'] .admin-main .bg-slate-900.border-slate-700 .text-indigo-300 {
+  color: #6366f1 !important;
+}
+
+[data-admin-theme='light'] .admin-main .bg-slate-900.border-slate-700 .text-emerald-300 {
+  color: #10b981 !important;
+}
+
+[data-admin-theme='light'] .admin-main .bg-slate-900.border-slate-700 .text-amber-300 {
+  color: #f59e0b !important;
+}
+
+/* Bar chart value labels in light mode */
+[data-admin-theme='light'] .admin-main .text-slate-600 {
+  color: #0f172a !important; /* slate-900 for better visibility */
+}
+
+/* Line chart legend in light mode */
+[data-admin-theme='light'] .admin-main .text-slate-400 {
+  color: #475569 !important; /* slate-600 for better visibility */
+}
+
+/* File input styling in light mode */
+[data-admin-theme='light'] .admin-main input[type="file"] {
+  color: #0f172a !important; /* slate-900 */
+}
+
+[data-admin-theme='light'] .admin-main input[type="file"]::file-selector-button {
+  background-color: #eef2ff !important; /* indigo-50 */
+  color: #4338ca !important; /* indigo-700 */
+  border: 1px solid #c7d2fe !important; /* indigo-200 */
+}
+
+[data-admin-theme='light'] .admin-main input[type="file"]::file-selector-button:hover {
+  background-color: #e0e7ff !important; /* indigo-100 */
+}
+
+[data-admin-theme='light'] .admin-main input[type="file"].text-slate-300 {
+  color: #0f172a !important;
+}
+
+[data-admin-theme='light'] .admin-main input[type="file"].text-slate-700 {
+  color: #0f172a !important;
+}
+
+/* Select dropdown styling in light mode */
+[data-admin-theme='light'] .admin-main select {
+  color: #0f172a !important; /* slate-900 */
+  background-color: #ffffff !important;
+}
+
+[data-admin-theme='light'] .admin-main select.text-slate-100 {
+  color: #0f172a !important;
+}
+
+[data-admin-theme='light'] .admin-main select.text-slate-900 {
+  color: #0f172a !important;
+}
+
+[data-admin-theme='light'] .admin-main select option {
+  background-color: #ffffff !important;
+  color: #0f172a !important;
+}
+
+/* Badge "Live" in sidebar light mode */
+[data-admin-theme='light'] aside .bg-indigo-500\/20 {
+  background-color: #eef2ff !important; /* indigo-50 */
+}
+
+[data-admin-theme='light'] aside .text-indigo-100 {
+  color: #4338ca !important; /* indigo-700 for better contrast */
+}
+
+[data-admin-theme='light'] aside .text-indigo-700 {
+  color: #4338ca !important; /* indigo-700 */
+}
+
+[data-admin-theme='light'] aside .border-indigo-300\/50 {
+  border-color: #818cf8 !important; /* indigo-400 */
+}
+
+/* Sidebar text improvements for light mode */
+[data-admin-theme='light'] aside .text-slate-200\/80,
+[data-admin-theme='light'] aside a.text-slate-200\/80 {
+  color: #0f172a !important; /* slate-900 */
+}
+
+[data-admin-theme='light'] aside a:not(.bg-slate-800\/80) .text-slate-200\/80 {
+  color: #475569 !important; /* slate-600 for inactive items */
+}
+
+[data-admin-theme='light'] aside a.bg-slate-800\/80 .text-slate-200\/80 {
+  color: #0f172a !important; /* slate-900 for active items */
+}
+
+/* Profile dropdown button hover in light mode */
+[data-admin-theme='light'] header button.hover\:bg-slate-900:hover {
+  background-color: #e2e8f0 !important; /* slate-200 */
+  color: #0f172a !important;
+}
+
+[data-admin-theme='light'] header .bg-slate-950\/95 {
+  background-color: #ffffff !important;
+}
+
+[data-admin-theme='light'] header .text-slate-200 {
+  color: #0f172a !important;
+}
+
+[data-admin-theme='light'] header button.text-slate-200 {
+  color: #0f172a !important;
+}
+
+[data-admin-theme='light'] header button.text-slate-200:hover {
+  color: #0f172a !important;
+  background-color: #e2e8f0 !important;
+}
+
+/* Additional fixes for light mode - ensure all elements are visible */
+[data-admin-theme='light'] .admin-main {
+  color: #0f172a !important;
+}
+
+/* Ensure all stat cards are visible in light mode */
+[data-admin-theme='light'] .admin-main .rounded-2xl.border-slate-800 {
+  border-color: #cbd5e1 !important;
+  background-color: #ffffff !important;
+}
+
+[data-admin-theme='light'] .admin-main .rounded-2xl.bg-slate-900\/80 {
+  background-color: #ffffff !important;
+  border-color: #cbd5e1 !important;
+}
+
+/* Ensure gradient backgrounds work in light mode */
+[data-admin-theme='light'] .admin-main .bg-gradient-to-r.from-slate-950 {
+  background: linear-gradient(to right, #f8fafc, #ffffff, #f8fafc) !important;
+}
+
+[data-admin-theme='light'] .admin-main .bg-gradient-to-b.from-slate-950 {
+  background: linear-gradient(to bottom, #f8fafc, #ffffff, #f1f5f9) !important;
+}
+
+/* Ensure all borders are visible */
+[data-admin-theme='light'] .admin-main .border-slate-800\/80 {
+  border-color: #cbd5e1 !important;
+}
+
+/* Table and list styling in light mode */
+[data-admin-theme='light'] .admin-main table {
+  background-color: #ffffff !important;
+}
+
+[data-admin-theme='light'] .admin-main tbody tr {
+  background-color: #ffffff !important;
+  border-color: #e2e8f0 !important;
+}
+
+[data-admin-theme='light'] .admin-main tbody tr:hover {
+  background-color: #f8fafc !important;
+}
+
+/* Modal and dialog styling in light mode */
+[data-admin-theme='light'] .admin-main .bg-slate-950\/95 {
+  background-color: #ffffff !important;
+  border-color: #cbd5e1 !important;
+}
+
+/* Ensure all buttons are visible in light mode */
+[data-admin-theme='light'] .admin-main button:not([class*="bg-"]) {
+  background-color: #f1f5f9 !important;
+  color: #0f172a !important;
+  border-color: #cbd5e1 !important;
+}
+
+[data-admin-theme='light'] .admin-main button:hover:not([class*="bg-"]) {
+  background-color: #e2e8f0 !important;
+}
+
+/* Ensure loading skeletons are visible in light mode */
+[data-admin-theme='light'] .admin-main .animate-pulse.bg-slate-900\/60 {
+  background-color: #e2e8f0 !important;
+}
+
+/* Ensure all text in cards is readable */
+[data-admin-theme='light'] .admin-main .text-white {
+  color: #0f172a !important;
+}
+
+[data-admin-theme='light'] .admin-main .text-slate-100 {
+  color: #0f172a !important;
+}
+
+[data-admin-theme='light'] .admin-main .text-slate-200 {
+  color: #0f172a !important;
+}
+
+/* Ensure icons in stat cards are visible */
+[data-admin-theme='light'] .admin-main .text-indigo-300 {
+  color: #6366f1 !important;
+}
+
+[data-admin-theme='light'] .admin-main .text-emerald-300 {
+  color: #10b981 !important;
+}
+
+[data-admin-theme='light'] .admin-main .text-amber-300 {
+  color: #f59e0b !important;
+}
+
+[data-admin-theme='light'] .admin-main .text-blue-300 {
+  color: #3b82f6 !important;
+}
+
+/* Ensure badges and tags are visible */
+[data-admin-theme='light'] .admin-main .bg-slate-900 {
+  background-color: #f1f5f9 !important;
+  border-color: #cbd5e1 !important;
+}
+
+[data-admin-theme='light'] .admin-main .bg-slate-800 {
+  background-color: #e2e8f0 !important;
+  border-color: #cbd5e1 !important;
+}
+
+/* Ensure all form elements are styled correctly */
+[data-admin-theme='light'] .admin-main .bg-slate-800\/70 {
+  background-color: #f1f5f9 !important;
+  border-color: #cbd5e1 !important;
+}
+
+[data-admin-theme='light'] .admin-main .bg-slate-800\/80 {
+  background-color: #f1f5f9 !important;
+  border-color: #cbd5e1 !important;
+}
+
+/* Fix Premium card text visibility in light mode */
+[data-admin-theme='light'] .admin-main .text-indigo-100 {
+  color: #4338ca !important; /* indigo-700 for better contrast */
+}
+
+[data-admin-theme='light'] .admin-main .text-indigo-200 {
+  color: #3730a3 !important; /* indigo-800 for better contrast */
+}
+
+[data-admin-theme='light'] .admin-main .text-indigo-200\/80 {
+  color: #3730a3 !important; /* indigo-800 for better contrast */
+  opacity: 0.9 !important;
+}
+
+/* Fix text in Premium card specifically */
+[data-admin-theme='light'] .admin-main .bg-indigo-500\/10 .text-indigo-100,
+[data-admin-theme='light'] .admin-main .bg-indigo-500\/10 .text-indigo-200 {
+  color: #4338ca !important; /* indigo-700 for better contrast */
+}
+
+[data-admin-theme='light'] .admin-main .bg-indigo-500\/10 .text-indigo-200\/80 {
+  color: #3730a3 !important; /* indigo-800 for better contrast */
+  opacity: 0.9 !important;
+}
+
+/* Fix small text labels for better visibility */
+[data-admin-theme='light'] .admin-main .text-slate-400 {
+  color: #475569 !important; /* slate-600 for better contrast */
+}
+
+[data-admin-theme='light'] .admin-main .text-slate-500 {
+  color: #334155 !important; /* slate-700 for better contrast */
+}
+
+[data-admin-theme='light'] .admin-main .text-slate-300 {
+  color: #1e293b !important; /* slate-800 for better contrast */
+}
+
+/* Fix text in cards and sections */
+[data-admin-theme='light'] .admin-main .bg-slate-900\/80 .text-slate-400 {
+  color: #475569 !important; /* slate-600 */
+}
+
+[data-admin-theme='light'] .admin-main .bg-slate-900\/80 .text-slate-500 {
+  color: #334155 !important; /* slate-700 */
+}
+
+[data-admin-theme='light'] .admin-main .bg-slate-900\/80 .text-white {
+  color: #0f172a !important; /* slate-900 */
+}
+
+/* Fix text in Ringkasan Paket section */
+[data-admin-theme='light'] .admin-main .bg-slate-900\/60 .text-slate-400 {
+  color: #475569 !important; /* slate-600 */
+}
+
+[data-admin-theme='light'] .admin-main .bg-slate-900\/60 .text-white {
+  color: #0f172a !important; /* slate-900 */
+}
+
+[data-admin-theme='light'] .admin-main .bg-slate-900\/60 .text-slate-300 {
+  color: #1e293b !important; /* slate-800 */
+}
+
+/* Fix text in KONTEN & KOMUNITAS section */
+[data-admin-theme='light'] .admin-main .text-slate-400.uppercase {
+  color: #475569 !important; /* slate-600 */
+  font-weight: 600 !important;
+}
+
+/* Fix user list text */
+[data-admin-theme='light'] .admin-main .text-slate-500.text-xs {
+  color: #334155 !important; /* slate-700 */
+}
+
+[data-admin-theme='light'] .admin-main .text-slate-300.text-sm {
+  color: #1e293b !important; /* slate-800 */
+}
+
+/* Fix badge text in light mode */
+[data-admin-theme='light'] .admin-main .bg-slate-800.text-slate-300 {
+  background-color: #e2e8f0 !important; /* slate-200 */
+  color: #0f172a !important; /* slate-900 */
+  border-color: #cbd5e1 !important;
+}
+
+/* Fix text in user cards */
+[data-admin-theme='light'] .admin-main .bg-slate-900\/80 .text-slate-400 {
+  color: #475569 !important; /* slate-600 */
+}
+
+[data-admin-theme='light'] .admin-main .bg-slate-900\/80 .text-slate-500 {
+  color: #334155 !important; /* slate-700 */
+}
+
+/* Fix text in USER TERBARU section */
+[data-admin-theme='light'] .admin-main .bg-slate-950\/60 .text-slate-400 {
+  color: #475569 !important; /* slate-600 */
+}
+
+[data-admin-theme='light'] .admin-main .bg-slate-950\/60 .text-slate-500 {
+  color: #334155 !important; /* slate-700 */
+}
+
+[data-admin-theme='light'] .admin-main .bg-slate-950\/60 .text-slate-300 {
+  color: #1e293b !important; /* slate-800 */
+}
+
+/* Fix text in health card */
+[data-admin-theme='light'] .admin-main .bg-slate-950\/70 .text-slate-300 {
+  color: #1e293b !important; /* slate-800 */
+}
+
+[data-admin-theme='light'] .admin-main .bg-slate-950\/70 .text-slate-400 {
+  color: #475569 !important; /* slate-600 */
+}
+
+/* Fix text in PlanRow component */
+[data-admin-theme='light'] .admin-main .text-slate-300.text-sm {
+  color: #1e293b !important; /* slate-800 */
+}
+
+[data-admin-theme='light'] .admin-main .text-slate-400.text-sm {
+  color: #475569 !important; /* slate-600 */
+}
+
+/* Fix text in stat cards description */
+[data-admin-theme='light'] .admin-main .text-slate-500.text-xs {
+  color: #334155 !important; /* slate-700 */
+}
+
+/* Fix text in TagBadge */
+[data-admin-theme='light'] .admin-main .bg-slate-900.text-slate-300 {
+  background-color: #f1f5f9 !important; /* slate-100 */
+  color: #0f172a !important; /* slate-900 */
+  border-color: #cbd5e1 !important;
+}
+
+/* Ensure all headings are dark in light mode */
+[data-admin-theme='light'] .admin-main h1,
+[data-admin-theme='light'] .admin-main h2,
+[data-admin-theme='light'] .admin-main h3 {
+  color: #0f172a !important; /* slate-900 */
+  font-weight: 700 !important;
+}
+
+/* Fix text in search input placeholder */
+[data-admin-theme='light'] .admin-main input::placeholder {
+  color: #64748b !important; /* slate-500 for better visibility */
+}
+
+/* Fix text in buttons for better contrast */
+[data-admin-theme='light'] .admin-main button.text-indigo-100 {
+  color: #4338ca !important; /* indigo-700 */
+}
+
+[data-admin-theme='light'] .admin-main button.text-slate-200 {
+  color: #0f172a !important; /* slate-900 */
+}
+
+[data-admin-theme='light'] .admin-main button.text-slate-300 {
+  color: #1e293b !important; /* slate-800 */
+}
+
+/* Additional fixes for specific sections that might be hard to read */
+
+/* Fix text in gradient background cards */
+[data-admin-theme='light'] .admin-main .bg-gradient-to-r.from-slate-950 .text-indigo-300 {
+  color: #4338ca !important; /* indigo-700 */
+}
+
+[data-admin-theme='light'] .admin-main .bg-gradient-to-r.from-slate-950 .text-slate-300 {
+  color: #1e293b !important; /* slate-800 */
+}
+
+[data-admin-theme='light'] .admin-main .bg-gradient-to-r.from-slate-950 .text-white {
+  color: #0f172a !important; /* slate-900 */
+}
+
+/* Fix text in small stat cards */
+[data-admin-theme='light'] .admin-main .rounded-2xl.bg-slate-900\/80 .text-xs.text-slate-400 {
+  color: #475569 !important; /* slate-600 */
+  font-weight: 500 !important;
+}
+
+[data-admin-theme='light'] .admin-main .rounded-2xl.bg-slate-900\/80 .text-\[11px\].text-slate-500 {
+  color: #334155 !important; /* slate-700 */
+}
+
+/* Fix text in Ringkasan Paket card */
+[data-admin-theme='light'] .admin-main .rounded-3xl.bg-slate-900\/60 .text-xs.uppercase {
+  color: #475569 !important; /* slate-600 */
+  font-weight: 600 !important;
+}
+
+[data-admin-theme='light'] .admin-main .rounded-3xl.bg-slate-900\/60 .text-lg.font-semibold {
+  color: #0f172a !important; /* slate-900 */
+}
+
+/* Fix text in user email and labels */
+[data-admin-theme='light'] .admin-main .text-sm.text-slate-400 {
+  color: #475569 !important; /* slate-600 */
+}
+
+[data-admin-theme='light'] .admin-main .text-xs.text-slate-500 {
+  color: #334155 !important; /* slate-700 */
+}
+
+/* Fix text in health subscription card */
+[data-admin-theme='light'] .admin-main .bg-slate-950\/70 .text-sm.text-slate-300 {
+  color: #1e293b !important; /* slate-800 */
+}
+
+[data-admin-theme='light'] .admin-main .bg-slate-950\/70 .text-xs.text-slate-400 {
+  color: #475569 !important; /* slate-600 */
+}
+
+/* Fix text in emerald-300 (for health icon) */
+[data-admin-theme='light'] .admin-main .text-emerald-300 {
+  color: #059669 !important; /* emerald-600 */
+}
+
+/* Ensure all percentage and count text is visible */
+[data-admin-theme='light'] .admin-main .text-xs.text-slate-500 {
+  color: #334155 !important; /* slate-700 */
+  font-weight: 500 !important;
+}
+
+/* Fix text in plan breakdown */
+[data-admin-theme='light'] .admin-main .text-sm.text-slate-300 {
+  color: #1e293b !important; /* slate-800 */
+}
+
+[data-admin-theme='light'] .admin-main .text-sm.text-slate-400 {
+  color: #475569 !important; /* slate-600 */
+}
+
+/* Fix text in KONTEN & KOMUNITAS section header */
+[data-admin-theme='light'] .admin-main .text-xs.uppercase.tracking-wide.text-slate-400 {
+  color: #94accb !important; /* slate-600 */
+  font-weight: 600 !important;
+}
+
+[data-admin-theme='light'] .admin-main .text-lg.font-semibold.text-white {
+  color: #0f172a !important; /* slate-900 */
+  font-weight: 700 !important;
+}
+
+/* Fix text in button tabs */
+[data-admin-theme='light'] .admin-main button.text-slate-300.hover\:text-white:hover {
+  color: #0f172a !important; /* slate-900 */
+}
+
+/* Fix text in user list items - ensure email is readable */
+[data-admin-theme='light'] .admin-main .bg-slate-900\/70 .text-sm.text-slate-400 {
+  color: #475569 !important; /* slate-600 */
+  font-weight: 500 !important;
+}
+
+/* Fix text in USER TERBARU section header */
+[data-admin-theme='light'] .admin-main .text-xs.uppercase.tracking-wide.text-slate-400 {
+  color: #475569 !important; /* slate-600 */
+  font-weight: 600 !important;
+}
+
+/* Fix text in user cards in USER TERBARU - ensure all text is readable */
+[data-admin-theme='light'] .admin-main .bg-slate-950\/60 .text-xs.text-slate-500 {
+  color: #334155 !important; /* slate-700 */
+  font-weight: 500 !important;
+}
+
+[data-admin-theme='light'] .admin-main .bg-slate-950\/60 .text-xs.text-slate-300 {
+  color: #1e293b !important; /* slate-800 */
+  font-weight: 500 !important;
+}
+
+/* Fix text in activity time labels */
+[data-admin-theme='light'] .admin-main .bg-indigo-500\/10 .text-indigo-100 {
+  color: #4338ca !important; /* indigo-700 */
+  font-weight: 500 !important;
+}
+
+/* Ensure all small text is readable */
+[data-admin-theme='light'] .admin-main p.text-xs:not([class*="text-"]) {
+  color: #334155 !important; /* slate-700 */
+}
+
+[data-admin-theme='light'] .admin-main p.text-sm:not([class*="text-"]) {
+  color: #1e293b !important; /* slate-800 */
+}
+
+/* Fix text in empty state messages */
+[data-admin-theme='light'] .admin-main .text-slate-500.text-xs {
+  color: #334155 !important; /* slate-700 */
+}
+
+[data-admin-theme='light'] .admin-main .text-slate-300.text-sm {
+  color: #1e293b !important; /* slate-800 */
+}
+
+/* Fix all badge/bubble text in light mode - comprehensive fixes */
+[data-admin-theme='light'] .admin-main .bg-indigo-500\/10.text-indigo-100,
+[data-admin-theme='light'] .admin-main .bg-indigo-500\/10.text-indigo-200 {
+  color: #4338ca !important; /* indigo-700 for better contrast */
+}
+
+[data-admin-theme='light'] .admin-main .bg-indigo-500\/15.text-indigo-100 {
+  color: #4338ca !important; /* indigo-700 */
+}
+
+[data-admin-theme='light'] .admin-main .bg-indigo-500\/20.text-indigo-100 {
+  color: #4338ca !important; /* indigo-700 */
+}
+
+[data-admin-theme='light'] .admin-main .bg-emerald-500\/10.text-emerald-100,
+[data-admin-theme='light'] .admin-main .bg-emerald-500\/15.text-emerald-100 {
+  color: #059669 !important; /* emerald-600 */
+}
+
+[data-admin-theme='light'] .admin-main .bg-emerald-500\/20.text-emerald-100 {
+  color: #059669 !important; /* emerald-600 */
+}
+
+[data-admin-theme='light'] .admin-main .bg-amber-500\/10.text-amber-100,
+[data-admin-theme='light'] .admin-main .bg-amber-500\/15.text-amber-100 {
+  color: #d97706 !important; /* amber-600 */
+}
+
+[data-admin-theme='light'] .admin-main .bg-amber-500\/20.text-amber-100 {
+  color: #d97706 !important; /* amber-600 */
+}
+
+[data-admin-theme='light'] .admin-main .bg-red-500\/10.text-red-100 {
+  color: #dc2626 !important; /* red-600 */
+}
+
+[data-admin-theme='light'] .admin-main .bg-red-500\/20.text-red-100 {
+  color: #dc2626 !important; /* red-600 */
+}
+
+[data-admin-theme='light'] .admin-main .bg-slate-800.text-slate-200,
+[data-admin-theme='light'] .admin-main .bg-slate-800.text-slate-300 {
+  background-color: #e2e8f0 !important; /* slate-200 */
+  color: #0f172a !important; /* slate-900 */
+  border-color: #cbd5e1 !important;
+}
+
+[data-admin-theme='light'] .admin-main .bg-slate-900.text-slate-200,
+[data-admin-theme='light'] .admin-main .bg-slate-900.text-slate-300 {
+  background-color: #f1f5f9 !important; /* slate-100 */
+  color: #0f172a !important; /* slate-900 */
+  border-color: #cbd5e1 !important;
+}
+
+[data-admin-theme='light'] .admin-main .bg-slate-900\/70.text-slate-200,
+[data-admin-theme='light'] .admin-main .bg-slate-900\/70.text-slate-300 {
+  background-color: #ffffff !important;
+  color: #0f172a !important; /* slate-900 */
+  border-color: #cbd5e1 !important;
+}
+
+[data-admin-theme='light'] .admin-main .bg-slate-900\/80.text-slate-200,
+[data-admin-theme='light'] .admin-main .bg-slate-900\/80.text-slate-300 {
+  background-color: #ffffff !important;
+  color: #0f172a !important; /* slate-900 */
+  border-color: #cbd5e1 !important;
+}
+
+[data-admin-theme='light'] .admin-main .bg-slate-950\/60.text-slate-200,
+[data-admin-theme='light'] .admin-main .bg-slate-950\/60.text-slate-300 {
+  background-color: #f8fafc !important; /* slate-50 */
+  color: #0f172a !important; /* slate-900 */
+  border-color: #cbd5e1 !important;
+}
+
+[data-admin-theme='light'] .admin-main .bg-slate-950\/70.text-slate-200,
+[data-admin-theme='light'] .admin-main .bg-slate-950\/70.text-slate-300 {
+  background-color: #f8fafc !important; /* slate-50 */
+  color: #0f172a !important; /* slate-900 */
+  border-color: #cbd5e1 !important;
+}
+
+/* Fix rounded-full badges */
+[data-admin-theme='light'] .admin-main .rounded-full.bg-slate-800.text-slate-300 {
+  background-color: #e2e8f0 !important; /* slate-200 */
+  color: #0f172a !important; /* slate-900 */
+  border-color: #cbd5e1 !important;
+}
+
+[data-admin-theme='light'] .admin-main .rounded-full.bg-slate-900.text-slate-300 {
+  background-color: #f1f5f9 !important; /* slate-100 */
+  color: #0f172a !important; /* slate-900 */
+  border-color: #cbd5e1 !important;
+}
+
+[data-admin-theme='light'] .admin-main .rounded-full.bg-indigo-500\/10.text-indigo-100 {
+  background-color: #eef2ff !important; /* indigo-50 */
+  color: #4338ca !important; /* indigo-700 */
+  border-color: #c7d2fe !important;
+}
+
+[data-admin-theme='light'] .admin-main .rounded-full.bg-emerald-500\/15.text-emerald-100 {
+  background-color: #d1fae5 !important; /* emerald-100 */
+  color: #059669 !important; /* emerald-600 */
+  border-color: #6ee7b7 !important;
+}
+
+[data-admin-theme='light'] .admin-main .rounded-full.bg-amber-500\/15.text-amber-100 {
+  background-color: #fef3c7 !important; /* amber-100 */
+  color: #d97706 !important; /* amber-600 */
+  border-color: #fcd34d !important;
+}
+
+/* Fix text-indigo-200/80 opacity */
+[data-admin-theme='light'] .admin-main .text-indigo-200\/80 {
+  color: #3730a3 !important; /* indigo-800 */
+  opacity: 1 !important;
+}
+
+/* Fix "User Gratis" and "User Free" text visibility in light mode */
+[data-admin-theme='light'] .admin-main .rounded-2xl.bg-slate-900\/80 .text-white {
+  color: #0f172a !important; /* slate-900 */
+}
+
+[data-admin-theme='light'] .admin-main .rounded-2xl.bg-slate-900\/80 p.text-xs.text-slate-400 {
+  color: #475569 !important; /* slate-600 */
+  font-weight: 500 !important;
+}
+
+[data-admin-theme='light'] .admin-main .rounded-2xl.bg-slate-900\/80 .text-lg.font-semibold.text-white {
+  color: #0f172a !important; /* slate-900 */
+  font-weight: 700 !important;
+}
+
+/* Fix StatCard text in light mode */
+[data-admin-theme='light'] .admin-main .rounded-2xl.border-slate-800 .text-3xl.font-semibold.text-white {
+  color: #0f172a !important; /* slate-900 */
+  font-weight: 700 !important;
+}
+
+[data-admin-theme='light'] .admin-main .rounded-2xl.border-slate-800 .text-xs.uppercase.tracking-wide.text-slate-400 {
+  color: #475569 !important; /* slate-600 */
+  font-weight: 600 !important;
+}
+
+[data-admin-theme='light'] .admin-main .rounded-2xl.border-slate-800 .text-xs.text-slate-500 {
+  color: #334155 !important; /* slate-700 */
+  font-weight: 500 !important;
+}
+
+/* Fix Premium card text */
+[data-admin-theme='light'] .admin-main .rounded-2xl.border-indigo-500\/20.bg-indigo-500\/10 .text-indigo-100 {
+  color: #4338ca !important; /* indigo-700 */
+  font-weight: 600 !important;
+}
+
+[data-admin-theme='light'] .admin-main .rounded-2xl.border-indigo-500\/20.bg-indigo-500\/10 .text-indigo-200 {
+  color: #3730a3 !important; /* indigo-800 */
+  font-weight: 500 !important;
+}
+
+[data-admin-theme='light'] .admin-main .rounded-2xl.border-indigo-500\/20.bg-indigo-500\/10 .text-3xl.font-semibold {
+  color: #4338ca !important; /* indigo-700 */
+  font-weight: 700 !important;
+}
+
+/* Fix "Free" badge text in user list */
+[data-admin-theme='light'] .admin-main .bg-slate-800.text-slate-200\/80 {
+  background-color: #e2e8f0 !important; /* slate-200 */
+  color: #0f172a !important; /* slate-900 */
+  border-color: #cbd5e1 !important;
+  font-weight: 600 !important;
+}
+
+[data-admin-theme='light'] .admin-main .bg-slate-800.border-slate-700.text-slate-200\/80 {
+  background-color: #e2e8f0 !important; /* slate-200 */
+  color: #0f172a !important; /* slate-900 */
+  border-color: #cbd5e1 !important;
+  font-weight: 600 !important;
+}
+
+/* Fix all card backgrounds for better contrast */
+[data-admin-theme='light'] .admin-main .rounded-2xl.border-slate-800\/80.bg-slate-900\/80 {
+  background-color: #ffffff !important;
+  border-color: #cbd5e1 !important;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06) !important;
+}
+
+[data-admin-theme='light'] .admin-main .rounded-3xl.border-slate-800.bg-slate-900\/60 {
+  background-color: #ffffff !important;
+  border-color: #cbd5e1 !important;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06) !important;
+}
+
+/* Fix dashboard header text */
+[data-admin-theme='light'] .admin-main .text-2xl.font-bold.text-white,
+[data-admin-theme='light'] .admin-main .text-3xl.font-bold.text-white {
+  color: #0f172a !important; /* slate-900 */
+  font-weight: 700 !important;
+}
+
+[data-admin-theme='light'] .admin-main .text-sm.text-slate-300 {
+  color: #1e293b !important; /* slate-800 */
+}
+
+/* Fix "Ringkasan Paket" section */
+[data-admin-theme='light'] .admin-main .rounded-3xl .text-lg.font-semibold.text-white {
+  color: #0f172a !important; /* slate-900 */
+  font-weight: 700 !important;
+}
+
+/* Fix health subscription card */
+[data-admin-theme='light'] .admin-main .rounded-2xl.border-slate-800.bg-slate-950\/70 .text-sm.text-slate-300 {
+  color: #1e293b !important; /* slate-800 */
+  font-weight: 500 !important;
+}
+
+[data-admin-theme='light'] .admin-main .rounded-2xl.border-slate-800.bg-slate-950\/70 .text-xs.text-slate-400 {
+  color: #475569 !important; /* slate-600 */
+  font-weight: 500 !important;
+}
+
+[data-admin-theme='light'] .admin-main .rounded-2xl.border-slate-800.bg-slate-950\/70 .text-emerald-300 {
+  color: #059669 !important; /* emerald-600 */
+}
+
+/* Fix user list items */
+[data-admin-theme='light'] .admin-main .bg-slate-900\/70 .text-lg.font-semibold.text-white {
+  color: #0f172a !important; /* slate-900 */
+  font-weight: 700 !important;
+}
+
+[data-admin-theme='light'] .admin-main .bg-slate-900\/70 .text-sm.text-slate-400 {
+  color: #475569 !important; /* slate-600 */
+  font-weight: 500 !important;
+}
+
+/* Fix "Konten & Komunitas" section */
+[data-admin-theme='light'] .admin-main .rounded-2xl.bg-slate-900\/70 .text-lg.font-semibold.text-white {
+  color: #0f172a !important; /* slate-900 */
+  font-weight: 700 !important;
+}
+
+/* Fix button text in light mode */
+[data-admin-theme='light'] .admin-main button.text-indigo-100 {
+  color: #4338ca !important; /* indigo-700 */
+  font-weight: 600 !important;
+}
+
+[data-admin-theme='light'] .admin-main button.text-red-100 {
+  color: #dc2626 !important; /* red-600 */
+  font-weight: 600 !important;
+}
+
+/* Fix empty state text */
+[data-admin-theme='light'] .admin-main .text-slate-300.text-sm {
+  color: #1e293b !important; /* slate-800 */
+  font-weight: 500 !important;
+}
+
+[data-admin-theme='light'] .admin-main .text-slate-500.text-xs {
+  color: #334155 !important; /* slate-700 */
+  font-weight: 500 !important;
+}
+
+/* Improve card shadows and borders in light mode */
+[data-admin-theme='light'] .admin-main .rounded-2xl {
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06) !important;
+}
+
+[data-admin-theme='light'] .admin-main .rounded-3xl {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06) !important;
+}
+
+/* Fix icon colors in stat cards */
+[data-admin-theme='light'] .admin-main .text-indigo-300,
+[data-admin-theme='light'] .admin-main .text-emerald-300,
+[data-admin-theme='light'] .admin-main .text-amber-300,
+[data-admin-theme='light'] .admin-main .text-sky-300,
+[data-admin-theme='light'] .admin-main .text-blue-300 {
+  color: inherit !important;
+}
+
+[data-admin-theme='light'] .admin-main .h-5.w-5.text-indigo-300 {
+  color: #6366f1 !important; /* indigo-500 */
+}
+
+[data-admin-theme='light'] .admin-main .h-5.w-5.text-emerald-300 {
+  color: #10b981 !important; /* emerald-500 */
+}
+
+[data-admin-theme='light'] .admin-main .h-5.w-5.text-amber-300 {
+  color: #f59e0b !important; /* amber-500 */
+}
+
+[data-admin-theme='light'] .admin-main .h-5.w-5.text-sky-300 {
+  color: #0ea5e9 !important; /* sky-500 */
+}
+
+[data-admin-theme='light'] .admin-main .h-5.w-5.text-blue-300 {
+  color: #3b82f6 !important; /* blue-500 */
+}
