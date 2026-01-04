@@ -587,49 +587,57 @@ export default function LessonsPage() {
                 }
 
                 return (
-                  <article key={`free-video-${post.id}`} className="card overflow-hidden hover:shadow-lg transition-shadow">
+                  <article key={`free-video-${post.id}`} className="card overflow-hidden hover:shadow-lg transition-shadow relative">
                     <div className="aspect-video bg-gray-200 relative">
                       {vurl ? (
-                        isYouTube ? (
-                          // YouTube videos should always show for free videos
-                          <iframe
-                            src={embedUrl}
-                            className="w-full h-full"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                            allowFullScreen
-                            title={post.title}
-                          />
+                        isAuthenticated ? (
+                          // Show video if authenticated
+                          isYouTube ? (
+                            <iframe
+                              src={embedUrl}
+                              className="w-full h-full"
+                              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                              allowFullScreen
+                              title={post.title}
+                            />
+                          ) : (
+                            <video 
+                              src={vurl} 
+                              className="w-full h-full object-cover"
+                              controls
+                            />
+                          )
                         ) : (
                           <>
-                            {/* Non-YouTube videos */}
-                            {isAuthenticated ? (
-                              <video 
-                                src={vurl} 
-                                className="w-full h-full object-cover"
-                                controls
+                            {/* Blurred video background for non-authenticated users */}
+                            {isYouTube ? (
+                              <iframe
+                                src={embedUrl}
+                                className="w-full h-full filter blur-sm"
+                                style={{ filter: 'blur(8px)' }}
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowFullScreen
+                                title={post.title}
                               />
                             ) : (
-                              <>
-                                <video 
-                                  src={vurl} 
-                                  className="w-full h-full object-cover"
-                                  style={{ filter: 'blur(8px)' }}
-                                  muted
-                                  loop
-                                />
-                                <div className="absolute inset-0 flex items-center justify-center">
-                                  <Link href="/login" className="z-10">
-                                    <LoginPrompt 
-                                      isAuthenticated={isAuthenticated}
-                                      title="Login Required"
-                                      description="Please login to watch this free video"
-                                      buttonText="Login"
-                                      buttonHref="/login"
-                                    />
-                                  </Link>
-                                </div>
-                              </>
+                              <video 
+                                src={vurl} 
+                                className="w-full h-full object-cover filter blur-sm"
+                                style={{ filter: 'blur(8px)' }}
+                                muted
+                                loop
+                              />
                             )}
+                            {/* Clickable overlay with login message */}
+                            <Link href="/login" className="absolute inset-0">
+                              <LoginPrompt 
+                                isAuthenticated={isAuthenticated}
+                                title="Login Required"
+                                description="Please login to watch this video"
+                                buttonText="Login"
+                                buttonHref="/login"
+                              />
+                            </Link>
                           </>
                         )
                       ) : (

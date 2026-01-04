@@ -115,7 +115,7 @@ export default function UpgradePage() {
       }
     } catch (error) {
       console.error('Error creating payment:', error);
-      alert(`An error occurred: ${error.message}`);
+      alert(`An error occurred: ${error instanceof Error ? error.message : 'Unknown error'}`);
     }
   };
 

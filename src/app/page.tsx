@@ -11,7 +11,6 @@ import "swiper/css/pagination";
 import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { useSearchParams } from "next/navigation";
 import { showSuccess } from '@/lib/swal';
 
 import { 
@@ -28,32 +27,35 @@ import {
 } from "@heroicons/react/24/outline";
 
 import { createClient } from "@supabase/supabase-js";
+import type { User } from "@supabase/supabase-js";
 
 const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+  process.env.NEXT_PUBLIC_SUPABASE_URL!,
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
 );
 
 export default function HomePage() {
-  const [user, setUser] = useState(null);
-  const [membership, setMembership] = useState(null);
-  const [mainSwiper, setMainSwiper] = useState(null);
-  const [subSwiper, setSubSwiper] = useState(null);
-  const [testimonials, setTestimonials] = useState([]);
+  const [user, setUser] = useState<User | null>(null);
+  const [membership, setMembership] = useState<any>(null);
+  const [mainSwiper, setMainSwiper] = useState<any>(null);
+  const [subSwiper, setSubSwiper] = useState<any>(null);
+  const [testimonials, setTestimonials] = useState<any[]>([]);
   const [testimonialsLoading, setTestimonialsLoading] = useState(true);
-  const searchParams = useSearchParams();
 
-  // Check for login success message
+  // Check for login success message - using window.location instead of useSearchParams to avoid SSR issues
   useEffect(() => {
-    const loginSuccess = searchParams.get('login');
-    if (loginSuccess === 'success') {
-      showSuccess("Berhasil login!").then(() => {
-        // Remove query parameter and refresh
-        window.history.replaceState({}, '', window.location.pathname);
-        window.location.reload();
-      });
+    if (typeof window !== 'undefined') {
+      const urlParams = new URLSearchParams(window.location.search);
+      const loginSuccess = urlParams.get('login');
+      if (loginSuccess === 'success') {
+        showSuccess("Berhasil login!").then(() => {
+          // Remove query parameter and refresh
+          window.history.replaceState({}, '', window.location.pathname);
+          window.location.reload();
+        });
+      }
     }
-  }, [searchParams]);
+  }, []);
 
   useEffect(() => {
     async function loadUser() {

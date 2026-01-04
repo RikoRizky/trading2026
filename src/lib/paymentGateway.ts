@@ -77,8 +77,10 @@ async function generateCustomQRIS(
     // Add your custom QRIS data here
   };
   
-  // Example: Generate QR code using qrcode library
-  // You need to install: npm install qrcode @types/qrcode
+  // Generate QR code using fallback static QR code
+  // If you want to use qrcode library, install it: npm install qrcode @types/qrcode
+  // Then uncomment the code below and remove the fallback
+  /*
   try {
     const QRCode = require('qrcode');
     const qrCodeDataURL = await QRCode.toDataURL(JSON.stringify(qrData), {
@@ -92,9 +94,11 @@ async function generateCustomQRIS(
     return qrCodeDataURL;
   } catch (error) {
     console.error('QR Code generation failed:', error);
-    // Fallback to static QR code
     return generateStaticQRCode(paymentId, amount);
   }
+  */
+  // Use fallback static QR code
+  return generateStaticQRCode(paymentId, amount);
 }
 
 /**

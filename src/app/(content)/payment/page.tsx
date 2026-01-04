@@ -54,8 +54,8 @@ export default function PaymentPage() {
 
       if (data.token) {
         // Pastikan Snap sudah dimuat
-        if (typeof window !== "undefined" && window.snap) {
-          window.snap.pay(data.token, {
+        if (typeof window !== "undefined" && (window as any).snap) {
+          (window as any).snap.pay(data.token, {
             onSuccess: function (result: any) {
               console.log("Payment success:", result);
               setPaymentStatus("success");
