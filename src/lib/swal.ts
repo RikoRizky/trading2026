@@ -10,14 +10,14 @@ const fallbackAlert = (message: string, title: string, type: 'success' | 'error'
 };
 
 // Custom configuration for SweetAlert2 with fallback
-export const showSuccess = (message: string, title: string = 'Berhasil!') => {
+export const showSuccess = (message: string, title: string = 'Berhasil!'): Promise<any> => {
   if (typeof window === 'undefined') {
     console.log(`[SUCCESS] ${title}: ${message}`);
-    return;
+    return Promise.resolve();
   }
 
   try {
-    Swal.fire({
+    return Swal.fire({
       icon: 'success',
       title: title,
       text: message,
@@ -42,6 +42,7 @@ export const showSuccess = (message: string, title: string = 'Berhasil!') => {
   } catch (e) {
     console.error('SweetAlert2 error:', e);
     fallbackAlert(message, title, 'success');
+    return Promise.resolve();
   }
 };
 
