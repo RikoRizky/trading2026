@@ -2,11 +2,11 @@
 
 import { useEffect, useMemo, useState } from 'react';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { signIn, signInWithGoogle } from '@/lib/auth';
-import { showSuccess, showError } from '@/lib/swal';
-import { createClient } from '@supabase/supabase-js';
+import { showSuccess, showError, showInfo } from '@/lib/swal';
+import { createClient } from '@/lib/supabase/client';
 import '../auth-styles.css';
 
 interface LoginFormData {
@@ -24,6 +24,7 @@ export default function LoginPage() {
     []
   );
   const router = useRouter();
+  const searchParams = useSearchParams();
  
   // If user arrives at login after starting a password recovery, clear recovery flag
   useEffect(() => {
@@ -35,7 +36,18 @@ export default function LoginPage() {
     // 'close' class shows login form on left, welcome panel on right (normal login view)
     setContainerClass('close');
     setPageState('page-ready');
-  }, []);
+    
+    // Check for error parameter in URL and show notification
+    const error = searchParams.get('error');
+    if (error === 'not_verified') {
+      showInfo(
+        'Email Anda belum diverifikasi. Silakan cek inbox email Anda (termasuk folder spam) untuk link verifikasi.',
+        'Email Belum Diverifikasi'
+      );
+      // Clean up URL
+      router.replace('/login');
+    }
+  }, [searchParams, router]);
   
   const {
     register,
@@ -47,47 +59,112 @@ export default function LoginPage() {
     setIsLoading(true);
     
     try {
-      const signInData = await signIn(data.email, data.password);
+      // Call signIn with timeout to prevent stuck
+      const signInPromise = signIn(data.email, data.password);
+      const signInTimeout = new Promise((_, reject) => 
+        setTimeout(() => reject(new Error('Timeout: Login memakan waktu terlalu lama')), 10000)
+      );
+
+      const signInData = await Promise.race([signInPromise, signInTimeout]) as any;
       
       const user = signInData?.user;
       if (!user) {
-        await showError("No user session found");
+        await showError(
+          "Sesi user tidak ditemukan. Silakan coba lagi.",
+          "Login Gagal"
+        );
+        setIsLoading(false);
         return;
       }
 
-      const { data: profile, error: profileError } = await createClient(
-        process.env.NEXT_PUBLIC_SUPABASE_URL || '',
-        process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || ''
-      )
-      .from("profiles")
-      .select("is_admin")
-      .eq("id", user.id)
-      .single();
+      // Use the client from our lib to ensure consistency
+      const supabase = createClient();
 
-      if (profileError) {
-        console.error(profileError);
-        await showError("Failed to load profile");
+      // Fetch profile with timeout to prevent stuck
+      const profilePromise = supabase
+        .from("profiles")
+        .select("is_admin")
+        .eq("id", user.id)
+        .single();
+
+      const profileTimeout = new Promise((_, reject) => 
+        setTimeout(() => reject(new Error('Timeout: Gagal memuat profil')), 5000)
+      );
+
+      let profileResult;
+      try {
+        profileResult = await Promise.race([profilePromise, profileTimeout]) as any;
+      } catch (profileErr: any) {
+        // If profile fetch fails, log but don't block login
+        console.warn('Profile fetch error:', profileErr);
+        profileResult = { data: { is_admin: false }, error: null };
+      }
+
+      if (profileResult?.error && profileResult.error.code !== 'PGRST116') {
+        // PGRST116 is "not found" which is okay, we'll create profile
+        console.error(profileResult.error);
+        await showError(
+          "Gagal memuat profil. Silakan coba lagi.",
+          "Error Memuat Profil"
+        );
+        setIsLoading(false);
         return;
       }
 
-      await showSuccess("Berhasil login!");
+      const profile = profileResult?.data || { is_admin: false };
+
+      // Show success notification immediately
+      showSuccess("Berhasil login!", "Login Berhasil");
 
       // ✅ REDIRECT BASED ON ADMIN ROLE
       if (profile?.is_admin === true) {
         setTimeout(() => {
           window.location.href = "/admin";
-        }, 1000);
+        }, 1500);
       } else {
         setTimeout(() => {
           window.location.href = "/";
-        }, 1000);
+        }, 1500);
       }
 
     } catch (error: any) {
-      await showError(error?.message || 'An unexpected error occurred');
-      console.error('Login error:', error);
-    } finally {
+      // Always set loading to false in catch block
       setIsLoading(false);
+      
+      // Handle specific error messages
+      let errorMessage = 'Terjadi kesalahan saat login. Silakan coba lagi.';
+      let errorTitle = 'Login Gagal';
+
+      if (error?.message) {
+        const errorMsg = error.message.toLowerCase();
+        
+        if (errorMsg.includes('invalid login credentials') || 
+            errorMsg.includes('email atau password salah') ||
+            errorMsg.includes('wrong password') ||
+            errorMsg.includes('invalid password')) {
+          errorMessage = 'Email atau password salah. Pastikan email dan password yang Anda masukkan benar.';
+          errorTitle = 'Email/Password Salah';
+        } else if (errorMsg.includes('user not found') || 
+                   errorMsg.includes('email not found') ||
+                   errorMsg.includes('user tidak ditemukan')) {
+          errorMessage = 'Email tidak terdaftar dalam sistem. Pastikan email yang Anda masukkan benar atau daftar terlebih dahulu.';
+          errorTitle = 'Email Tidak Terdaftar';
+        } else if (errorMsg.includes('email belum diverifikasi') ||
+                   errorMsg.includes('email not verified') ||
+                   errorMsg.includes('not verified')) {
+          errorMessage = 'Email Anda belum diverifikasi. Silakan cek inbox email Anda untuk link verifikasi.';
+          errorTitle = 'Email Belum Diverifikasi';
+        } else if (errorMsg.includes('timeout')) {
+          errorMessage = 'Waktu tunggu habis. Silakan coba lagi.';
+          errorTitle = 'Timeout';
+        } else {
+          errorMessage = error.message || errorMessage;
+        }
+      }
+
+      // Show error notification immediately
+      showError(errorMessage, errorTitle);
+      console.error('Login error:', error);
     }
   };
 

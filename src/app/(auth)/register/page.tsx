@@ -5,19 +5,21 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { signUp } from '@/lib/auth';
-import { toast } from 'react-hot-toast';
+import { showSuccess, showError, showInfo } from '@/lib/swal';
 import '../auth-styles.css';
 
 interface RegisterFormData {
   fullName: string;
   email: string;
   password: string;
+  confirmPassword: string;
   agreeToTerms: boolean;
 }
 
 export default function RegisterPage() {
   const [isLoading, setIsLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [containerClass, setContainerClass] = useState('');
   const [pageState, setPageState] = useState('');
   const gradientDelay = useMemo(
@@ -29,8 +31,10 @@ export default function RegisterPage() {
   const {
     register,
     handleSubmit,
+    watch,
     formState: { errors },
   } = useForm<RegisterFormData>();
+  const password = watch('password');
 
   useEffect(() => {
     // Set initial container class untuk animasi
@@ -55,17 +59,31 @@ export default function RegisterPage() {
           await signUp(form.email, form.password, form.fullName);
 
         if (signUpError) {
-          toast.error(signUpError.message);
+          showError(
+            signUpError.message || 'Gagal membuat akun. Silakan coba lagi.',
+            'Registrasi Gagal'
+          );
+          setIsLoading(false);
           return;
         }
 
-        toast.success("Account created! Please verify your email.");
-        router.push("/login");
+        // Show success notification with email confirmation message
+        showInfo(
+          'Akun berhasil dibuat! Silakan cek inbox email Anda (termasuk folder spam) untuk link konfirmasi akun.',
+          'Cek Email Anda'
+        );
+
+        // Redirect to login after a short delay
+        setTimeout(() => {
+          router.push("/login");
+        }, 2000);
 
       } catch (err: any) {
         console.error("REGISTER ERROR:", err);
-        toast.error(err.message || "Unexpected error");
-      } finally {
+        showError(
+          err.message || 'Terjadi kesalahan. Silakan coba lagi.',
+          'Error'
+        );
         setIsLoading(false);
       }
     };
@@ -146,48 +164,86 @@ export default function RegisterPage() {
                 )}
               </div>
               
-              <div className="password-input-wrapper">
-                <input
-                  {...register('password', {
-                    required: 'Password is required',
-                    minLength: {
-                      value: 8,
-                      message: 'Password must be at least 8 characters',
-                    },
-                    pattern: {
-                      value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/,
-                      message: 'Password must contain at least one uppercase letter, one lowercase letter, and one number',
-                    },
-                  })}
-                  type={showPassword ? 'text' : 'password'}
-                  autoComplete="new-password"
-                  placeholder="password"
-                  className={errors.password ? 'error' : ''}
-                />
-                <button
-                  type="button"
-                  className="password-toggle-btn"
-                  onClick={() => setShowPassword(!showPassword)}
-                  tabIndex={-1}
-                >
-                  {showPassword ? (
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/>
-                      <line x1="1" y1="1" x2="23" y2="23"/>
-                    </svg>
-                  ) : (
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
-                      <circle cx="12" cy="12" r="3"/>
-                    </svg>
-                  )}
-                </button>
+              <div className="input-wrapper">
+                <div className="password-input-wrapper">
+                  <input
+                    {...register('password', {
+                      required: 'Password wajib diisi',
+                      minLength: {
+                        value: 8,
+                        message: 'Password minimal 8 karakter',
+                      },
+                      pattern: {
+                        value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/,
+                        message: 'Password harus mengandung huruf besar, huruf kecil, dan angka',
+                      },
+                    })}
+                    type={showPassword ? 'text' : 'password'}
+                    autoComplete="new-password"
+                    placeholder="password"
+                    className={errors.password ? 'error' : ''}
+                  />
+                  <button
+                    type="button"
+                    className="password-toggle-btn"
+                    onClick={() => setShowPassword(!showPassword)}
+                    tabIndex={-1}
+                  >
+                    {showPassword ? (
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/>
+                        <line x1="1" y1="1" x2="23" y2="23"/>
+                      </svg>
+                    ) : (
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                        <circle cx="12" cy="12" r="3"/>
+                      </svg>
+                    )}
+                  </button>
+                </div>
                 {errors.password && (
                   <span className="auth-error">{errors.password.message}</span>
                 )}
               </div>
               
-              <div style={{ position: 'relative', float: 'left', margin: '15px 0' }}>
+              <div className="input-wrapper">
+                <div className="password-input-wrapper">
+                  <input
+                    {...register('confirmPassword', {
+                      required: 'Konfirmasi password wajib diisi',
+                      validate: (v) => v === password || 'Password tidak cocok',
+                    })}
+                    type={showConfirmPassword ? 'text' : 'password'}
+                    autoComplete="new-password"
+                    placeholder="confirm password"
+                    className={errors.confirmPassword ? 'error' : ''}
+                  />
+                  <button
+                    type="button"
+                    className="password-toggle-btn"
+                    onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                    tabIndex={-1}
+                  >
+                    {showConfirmPassword ? (
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/>
+                        <line x1="1" y1="1" x2="23" y2="23"/>
+                      </svg>
+                    ) : (
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                        <circle cx="12" cy="12" r="3"/>
+                      </svg>
+                    )}
+                  </button>
+                </div>
+                {errors.confirmPassword && (
+                  <span className="auth-error">{errors.confirmPassword.message}</span>
+                )}
+              </div>
+              
+              <div style={{ position: 'relative', float: 'left', margin: '-20px 0' }}>
                 <label>
                   <input
                     {...register('agreeToTerms', {

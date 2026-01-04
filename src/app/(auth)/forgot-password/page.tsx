@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { resetPassword } from '@/lib/auth';
-import { toast } from 'react-hot-toast';
+import { showSuccess, showError, showInfo } from '@/lib/swal';
 import Link from 'next/link';
 import '../auth-styles.css';
 
@@ -27,17 +27,60 @@ export default function ForgotPasswordPage() {
   const onSubmit = async (data: ForgotFormData) => {
     setIsLoading(true);
     try {
-      const { error } = await resetPassword(data.email);
-      if (error) {
-        toast.error(error.message || 'Failed to send reset email');
-      } else {
-        toast.success('Reset link sent. Check your email.');
-      }
-    } catch (error) {
-      toast.error('An unexpected error occurred');
-      console.error('Forgot password error:', error);
-    } finally {
+      // Add timeout to prevent stuck
+      const resetPromise = resetPassword(data.email);
+      const resetTimeout = new Promise((_, reject) => 
+        setTimeout(() => reject(new Error('Timeout: Request memakan waktu terlalu lama')), 15000)
+      );
+
+      const result = await Promise.race([resetPromise, resetTimeout]) as any;
+      
+      // Always set loading to false before showing notification
       setIsLoading(false);
+      
+      if (result?.error) {
+        // Check for specific error messages
+        const errorMsg = result.error.message?.toLowerCase() || '';
+        
+        if (errorMsg.includes('user not found') || 
+            errorMsg.includes('email not found') ||
+            errorMsg.includes('email tidak terdaftar')) {
+          showError(
+            'Email tidak terdaftar dalam sistem. Pastikan email yang Anda masukkan benar.',
+            'Email Tidak Ditemukan'
+          );
+        } else {
+          showError(
+            result.error.message || 'Gagal mengirim email reset password. Silakan coba lagi.',
+            'Gagal Mengirim Email'
+          );
+        }
+        return;
+      }
+
+      // Success - show info notification immediately
+      showInfo(
+        `Link reset password telah dikirim ke email ${data.email}. Silakan cek inbox email Anda (termasuk folder spam). Klik link yang dikirim untuk mereset password Anda.`,
+        'Cek Email Anda'
+      );
+      
+    } catch (error: any) {
+      setIsLoading(false);
+      
+      const errorMsg = error?.message?.toLowerCase() || '';
+      
+      if (errorMsg.includes('timeout')) {
+        showError(
+          'Waktu tunggu habis. Silakan coba lagi.',
+          'Timeout'
+        );
+      } else {
+        showError(
+          error?.message || 'Terjadi kesalahan. Silakan coba lagi.',
+          'Error'
+        );
+      }
+      console.error('Forgot password error:', error);
     }
   };
 

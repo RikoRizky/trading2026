@@ -42,17 +42,40 @@ export async function getCurrentUser(): Promise<AuthUser> {
 export async function signUp(email: string, password: string, fullName: string) {
   const supabase = createClient();
 
-  return await supabase.auth.signUp({
+  const result = await supabase.auth.signUp({
     email,
     password,
     options: {
       data: {
         full_name: fullName,
       },
-      // FIX: handle redirect di client-side
-      emailRedirectTo: `${location.origin}/auth/callback`,
+      // Use correct URL for both local and production
+      emailRedirectTo: typeof window !== 'undefined' 
+        ? `${process.env.NEXT_PUBLIC_SITE_URL || window.location.origin}/auth/callback`
+        : `${process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'}/auth/callback`,
     },
   });
+
+  // Create profile immediately if user was created (even if email not confirmed)
+  if (result.data?.user && !result.error) {
+    const { error: profileError } = await supabase
+      .from('profiles')
+      .insert({
+        id: result.data.user.id,
+        full_name: fullName,
+        membership_type: 'free',
+        is_admin: false
+      })
+      .select()
+      .single();
+
+    // Ignore error if profile already exists (race condition)
+    if (profileError && profileError.code !== '23505') {
+      console.error('Failed to create profile:', profileError);
+    }
+  }
+
+  return result;
 }
 
 /** Sign in */
@@ -64,10 +87,101 @@ export async function signIn(email: string, password: string) {
     password,
   });
 
-  if (error) throw error;
+  // Handle Supabase auth errors with specific messages
+  if (error) {
+    const errorMsg = error.message?.toLowerCase() || '';
+    
+    if (errorMsg.includes('invalid login credentials') || 
+        errorMsg.includes('invalid password') ||
+        errorMsg.includes('wrong password')) {
+      throw new Error("Email atau password salah. Pastikan email dan password yang Anda masukkan benar.");
+    } else if (errorMsg.includes('user not found') || 
+               errorMsg.includes('email not found')) {
+      throw new Error("Email tidak terdaftar dalam sistem. Pastikan email yang Anda masukkan benar atau daftar terlebih dahulu.");
+    } else if (errorMsg.includes('email not confirmed') ||
+               errorMsg.includes('email belum diverifikasi')) {
+      throw new Error("Email belum diverifikasi. Silakan cek inbox email Anda untuk link verifikasi.");
+    }
+    
+    // Throw original error if no specific match
+    throw error;
+  }
 
-  if (data.user && data.user.email_confirmed_at === null) {
-    throw new Error("Email belum diverifikasi. Silakan cek inbox.");
+  if (!data.user) {
+    throw new Error("Login gagal. User tidak ditemukan.");
+  }
+
+  // AUTO-CONFIRM: Allow login even if email is not confirmed (for all accounts)
+  // This enables auto-confirm functionality - users don't need to verify email
+  if (data.user.email_confirmed_at === null) {
+    // Check if profile exists
+    const { data: profile } = await supabase
+      .from('profiles')
+      .select('id')
+      .eq('id', data.user.id)
+      .single();
+
+    // If no profile exists, this is a new account - allow login and create profile
+    if (!profile) {
+      // Create profile for new account
+      try {
+        await supabase.from('profiles').insert({
+          id: data.user.id,
+          full_name: data.user.user_metadata?.full_name || '',
+          membership_type: 'free',
+          is_admin: false
+        });
+      } catch (profileError: any) {
+        // Ignore error if profile already exists (race condition)
+        if (profileError.code !== '23505') {
+          console.error('Failed to create profile during login:', profileError);
+        }
+      }
+    }
+    
+    // Allow login for all accounts even without email confirmation (auto-confirm)
+    console.log('Login allowed without email confirmation (auto-confirm enabled)');
+  }
+
+  // Ensure profile exists after successful login (with timeout to prevent stuck)
+  // Don't block login if profile check fails
+  try {
+    const profilePromise = supabase
+      .from('profiles')
+      .select('id')
+      .eq('id', data.user.id)
+      .single();
+
+    const timeoutPromise = new Promise((_, reject) => 
+      setTimeout(() => reject(new Error('Timeout')), 3000)
+    );
+
+    const profileResult = await Promise.race([profilePromise, timeoutPromise]) as any;
+
+    // If profile doesn't exist (error code PGRST116 = not found), create it
+    if (profileResult.error && profileResult.error.code === 'PGRST116') {
+      // Create profile if it doesn't exist (shouldn't happen, but safety check)
+      try {
+        const { error: profileError } = await supabase
+          .from('profiles')
+          .insert({
+            id: data.user.id,
+            full_name: data.user.user_metadata?.full_name || '',
+            membership_type: 'free',
+            is_admin: false
+          });
+
+        if (profileError && profileError.code !== '23505') {
+          console.error('Failed to create profile during login:', profileError);
+        }
+      } catch (insertErr) {
+        // Don't block login if profile creation fails
+        console.warn('Profile creation failed during login:', insertErr);
+      }
+    }
+  } catch (profileErr) {
+    // Don't block login if profile check fails, just log it
+    console.warn('Profile check failed during login:', profileErr);
   }
 
   return data;
@@ -123,9 +237,37 @@ export async function updatePassword(newPassword: string) {
 export async function resetPassword(email: string) {
   const supabase = createClient();
 
-  return await supabase.auth.resetPasswordForEmail(email, {
-    redirectTo: `${window.location.origin}/auth/reset-password`,
+  // Get the correct origin URL for both local and production
+  // Priority: NEXT_PUBLIC_SITE_URL > window.location.origin (client-side) > localhost
+  let origin = 'http://localhost:3000';
+  
+  if (typeof window !== 'undefined') {
+    // Client-side: prefer NEXT_PUBLIC_SITE_URL if set, otherwise use current origin
+    origin = process.env.NEXT_PUBLIC_SITE_URL || window.location.origin;
+  } else {
+    // Server-side: use environment variables
+    origin = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
+  }
+
+  // Supabase reset password email will contain code and type=recovery
+  // The redirect URL should point to callback route which will handle code exchange
+  const redirectUrl = `${origin}/auth/callback?type=recovery`;
+
+  console.log('Sending reset password email to:', email);
+  console.log('Redirect URL:', redirectUrl);
+
+  const result = await supabase.auth.resetPasswordForEmail(email, {
+    redirectTo: redirectUrl,
   });
+
+  // Log for debugging
+  if (result.error) {
+    console.error('Reset password error:', result.error);
+  } else {
+    console.log('Reset password email sent successfully to:', email);
+  }
+
+  return result;
 }
 
 /** Premium membership checker */
