@@ -24,6 +24,9 @@ import {
   UserPlusIcon,
   WalletIcon,
   ArrowRightIcon,
+  ShieldCheckIcon,
+  ChartBarIcon,
+  AcademicCapIcon,
 } from "@heroicons/react/24/outline";
 
 import { createClient } from "@supabase/supabase-js";
@@ -237,20 +240,16 @@ export default function HomePage() {
 
             {/* ✅ CTA buttons (Conditional based on membership) */}
               {showCTA && (
-                <div className="mt-8 flex flex-col sm:flex-row gap-4">
+                <div className="mt-8 flex flex-col gap-4">
                   <Link
                     href={ctaHref}
-                    className="px-6 py-3 bg-primary-600 text-white font-medium rounded-lg hover:bg-primary-700 transition inline-flex items-center justify-center"
+                    className="px-8 py-4 bg-primary-600 text-white font-semibold rounded-lg hover:bg-primary-700 transition inline-flex items-center justify-center text-lg"
                   >
-                    {user && membership === "free" ? "Upgrade Premium" : "Get Started"}
+                    Start Learning for Free
                   </Link>
-
-                  <Link
-                    href={ctaHref}
-                    className="px-6 py-3 border border-gray-300 text-gray-900 font-medium rounded-lg hover:bg-gray-100 transition inline-flex items-center justify-center"
-                  >
-                    Learn More
-                  </Link>
+                  <p className="text-sm text-white/80 text-center">
+                    No credit card required · Education only
+                  </p>
                 </div>
               )}
 
@@ -358,6 +357,92 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Value Proposition Section */}
+      <section className="relative py-20 overflow-hidden text-white">
+        <div className="absolute inset-0 bg-gradient-to-r from-indigoSteel-dark via-indigoSteel-light to-indigoSteel-dark"/>
+        <div className="relative container mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+              Why Traders Choose This Platform
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+              className="bg-white/10 border border-white/20 backdrop-blur-md rounded-xl p-8 text-center hover:bg-white/15 transition-all duration-300"
+            >
+              <div className="bg-white/20 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-6">
+                <AcademicCapIcon className="h-8 w-8 text-white" />
+              </div>
+              <h3 className="text-xl font-semibold text-white mb-3">
+                Structured Trading Curriculum
+              </h3>
+              <p className="text-white/80 text-sm">
+                Beginner → Advanced with clear roadmap
+              </p>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              className="bg-white/10 border border-white/20 backdrop-blur-md rounded-xl p-8 text-center hover:bg-white/15 transition-all duration-300"
+            >
+              <div className="bg-white/20 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-6">
+                <ShieldCheckIcon className="h-8 w-8 text-white" />
+              </div>
+              <h3 className="text-xl font-semibold text-white mb-3">
+                Risk Management First
+              </h3>
+              <p className="text-white/80 text-sm">
+                Capital protection before profit
+              </p>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="bg-white/10 border border-white/20 backdrop-blur-md rounded-xl p-8 text-center hover:bg-white/15 transition-all duration-300"
+            >
+              <div className="bg-white/20 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-6">
+                <ChartBarIcon className="h-8 w-8 text-white" />
+              </div>
+              <h3 className="text-xl font-semibold text-white mb-3">
+                Real Market Case Studies
+              </h3>
+              <p className="text-white/80 text-sm">
+                Practical chart-based learning
+              </p>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              className="bg-white/10 border border-white/20 backdrop-blur-md rounded-xl p-8 text-center hover:bg-white/15 transition-all duration-300"
+            >
+              <div className="bg-white/20 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-6">
+                <UsersIcon className="h-8 w-8 text-white" />
+              </div>
+              <h3 className="text-xl font-semibold text-white mb-3">
+                Community & Mentor Review
+              </h3>
+              <p className="text-white/80 text-sm">
+                Learn and discuss with other traders
+              </p>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
       {/* Features Section */}
       <section className="relative py-20 overflow-hidden">
         {/* Animated BG */}
@@ -426,6 +511,77 @@ export default function HomePage() {
 
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Learning Preview Section */}
+      <section className="relative py-20 overflow-hidden text-white">
+        <div className="absolute inset-0 bg-gradient-to-r from-indigoSteel-dark via-indigoSteel-light to-indigoSteel-dark"/>
+        <div className="relative container mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+              What You Will Learn
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            {/* LEFT: Bullet List */}
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="space-y-6"
+            >
+              <div className="flex items-start space-x-4">
+                <CheckCircleIcon className="h-6 w-6 text-success-500 mt-1 flex-shrink-0" />
+                <div>
+                  <h3 className="text-xl font-semibold text-white mb-2">Technical Analysis</h3>
+                  <p className="text-white/80 text-sm">Support & Resistance, Trend, Indicators</p>
+                </div>
+              </div>
+              <div className="flex items-start space-x-4">
+                <CheckCircleIcon className="h-6 w-6 text-success-500 mt-1 flex-shrink-0" />
+                <div>
+                  <h3 className="text-xl font-semibold text-white mb-2">Trading Psychology</h3>
+                  <p className="text-white/80 text-sm">Master your emotions and develop discipline</p>
+                </div>
+              </div>
+              <div className="flex items-start space-x-4">
+                <CheckCircleIcon className="h-6 w-6 text-success-500 mt-1 flex-shrink-0" />
+                <div>
+                  <h3 className="text-xl font-semibold text-white mb-2">Risk & Money Management</h3>
+                  <p className="text-white/80 text-sm">Protect your capital with proven strategies</p>
+                </div>
+              </div>
+              <div className="flex items-start space-x-4">
+                <CheckCircleIcon className="h-6 w-6 text-success-500 mt-1 flex-shrink-0" />
+                <div>
+                  <h3 className="text-xl font-semibold text-white mb-2">Backtesting & Journaling</h3>
+                  <p className="text-white/80 text-sm">Track performance and refine your approach</p>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* RIGHT: Illustration */}
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="relative"
+            >
+              <div className="relative w-full max-w-md mx-auto">
+                <div className="hover:scale-105 transition-transform duration-300">
+                  <img
+                    src="/illustrations/undraw_visual-data_1eya.svg"
+                    alt="Educational data visualization"
+                    className="w-full h-auto"
+                  />
+                </div>
+              </div>
+            </motion.div>
           </div>
         </div>
       </section>
@@ -639,6 +795,78 @@ export default function HomePage() {
               <span className="text-white text-lg">›</span>
             </button>
           </div>
+        </div>
+      </section>
+
+      {/* Trust & Credibility Section */}
+      <section className="relative py-20 overflow-hidden text-white">
+        <div className="absolute inset-0 bg-gradient-to-r from-indigoSteel-dark via-indigoSteel-light to-indigoSteel-dark"/>
+        <div className="relative container mx-auto px-4">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="max-w-3xl mx-auto text-center"
+          >
+            <div className="bg-white/10 border border-white/20 backdrop-blur-md rounded-2xl p-12">
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-8">
+                Education-Focused Platform
+              </h2>
+              
+              <div className="space-y-6 mb-8">
+                <div className="flex items-center justify-center space-x-3">
+                  <CheckCircleIcon className="h-6 w-6 text-success-500 flex-shrink-0" />
+                  <p className="text-lg text-white/90">No signal selling</p>
+                </div>
+                <div className="flex items-center justify-center space-x-3">
+                  <CheckCircleIcon className="h-6 w-6 text-success-500 flex-shrink-0" />
+                  <p className="text-lg text-white/90">Built for long-term traders</p>
+                </div>
+                <div className="flex items-center justify-center space-x-3">
+                  <CheckCircleIcon className="h-6 w-6 text-success-500 flex-shrink-0" />
+                  <p className="text-lg text-white/90">Comprehensive educational content</p>
+                </div>
+              </div>
+
+              <div className="pt-6 border-t border-white/20">
+                <p className="text-sm text-white/70 italic">
+                  Trading involves risk. This platform provides educational content only.
+                </p>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Final CTA Section */}
+      <section className="relative py-20 overflow-hidden text-white">
+        <div className="absolute inset-0 bg-gradient-to-r from-indigoSteel-dark via-indigoSteel-light to-indigoSteel-dark"/>
+        <div className="relative container mx-auto px-4">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="max-w-2xl mx-auto text-center"
+          >
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+              Start Your Trading Education Today
+            </h2>
+            {showCTA && (
+              <>
+                <Link
+                  href={ctaHref}
+                  className="inline-block px-8 py-4 bg-primary-600 text-white font-semibold rounded-lg hover:bg-primary-700 transition text-lg mb-4"
+                >
+                  Create Free Account
+                </Link>
+                <p className="text-sm text-white/80">
+                  Upgrade anytime · Cancel anytime
+                </p>
+              </>
+            )}
+          </motion.div>
         </div>
       </section>
 
