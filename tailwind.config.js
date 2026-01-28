@@ -64,6 +64,11 @@ module.exports = {
           dark: '#0F5132',
           light: '#20C997',
         },
+        crypto: {
+          purple: '#8B5CF6',
+          'light-purple': '#A78BFA',
+          'dark-purple': '#7C3AED',
+        },
       },
       fontFamily: {
         sans: ['Inter', 'system-ui', 'sans-serif'],

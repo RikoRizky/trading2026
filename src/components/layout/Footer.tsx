@@ -33,7 +33,7 @@ const socialLinks = [
 ];
 
   return (
-    <footer className="bg-gray-900 text-white">
+    <footer className="bg-gradient-to-r from-indigoSteel-dark via-indigoSteel-light to-indigoSteel-dark text-white border-t border-white/10">
       <div className="container">
         <div className="py-12">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-8">

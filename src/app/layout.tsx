@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google';
 import './globals.css';
 import { ClientLayoutSwitch } from './ClientLayoutSwitch';
 import { AuthProvider } from '@/components/providers/AuthProvider';
+import { ErrorBoundary } from '@/components/ErrorBoundary';
 import 'sweetalert2/dist/sweetalert2.min.css';
 
 const inter = Inter({ subsets: ['latin'] });
@@ -48,7 +49,9 @@ export default function RootLayout({
     <html lang="en" className="h-full">
       <body className={`${inter.className} h-full flex flex-col`}>
         <AuthProvider>
-          <ClientLayoutSwitch>{children}</ClientLayoutSwitch>
+          <ErrorBoundary>
+            <ClientLayoutSwitch>{children}</ClientLayoutSwitch>
+          </ErrorBoundary>
         </AuthProvider>
       </body>
     </html>
